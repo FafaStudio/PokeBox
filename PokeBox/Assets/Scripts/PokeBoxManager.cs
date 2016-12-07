@@ -5,15 +5,27 @@ public class PokeBoxManager : MonoBehaviour {
 
 	public GameObject[] pokemons;
 
+
+	public bool isMiniGame = false;
+
+	public GameObject[] mimikyuGamePokemons;
+	public bool isMimikyuGame = false;
+
 	public GameObject[] decors;
 	private GameObject currentDecors;
 	private int indexDecors = 0;
+
 
 	void Awake(){
 		Application.targetFrameRate =60;
 	}
 	void Start () {
 		initDecors ();
+	}
+
+	public void stopMiniGame(){
+		isMiniGame = false;
+		isMimikyuGame = false;
 	}
 
 	public void launchDecors(){
