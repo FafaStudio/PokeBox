@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{DAE4DA50-FADC-3C1F-5393-1EB1944FF757}") = "PokeBox", "Assembly-CSharp.csproj", "{4FD78CC0-0857-D9F0-C386-EBF604B6E2DA}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeBox.CSharp", "PokeBox.CSharp.csproj", "{267FB15F-3243-5B64-8E77-7380CB277B6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4FD78CC0-0857-D9F0-C386-EBF604B6E2DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4FD78CC0-0857-D9F0-C386-EBF604B6E2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4FD78CC0-0857-D9F0-C386-EBF604B6E2DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4FD78CC0-0857-D9F0-C386-EBF604B6E2DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{267FB15F-3243-5B64-8E77-7380CB277B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{267FB15F-3243-5B64-8E77-7380CB277B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{267FB15F-3243-5B64-8E77-7380CB277B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{267FB15F-3243-5B64-8E77-7380CB277B6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
