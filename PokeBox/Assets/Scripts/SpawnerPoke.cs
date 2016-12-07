@@ -5,14 +5,23 @@ using System.Collections.Generic;
 public class SpawnerPoke : MonoBehaviour {
 
 	private GameObject[] pokemons;
+	private GameObject[] mimiPokemons;
 	private List<GameObject> pokemonsSpawned;
 
+	[HideInInspector]public PokeBoxManager manager;
+
 	public bool canSpawnPokemon(GameObject pokemon){
-		return pokemonsSpawned.Contains (pokemon);
+		foreach (GameObject poke in pokemonsSpawned) {
+			if (poke.GetComponent<Pokemon>().name == pokemon.GetComponent<Pokemon> ().name)
+				return false;
+		}
+		return true;
 	}
 
 	void Awake(){
-		pokemons = GameObject.FindGameObjectWithTag ("PokeManager").GetComponent<PokeBoxManager> ().pokemons;
+		manager =GetComponent<PokeBoxManager> ();
+		mimiPokemons = manager.mimikyuGamePokemons;
+		pokemons =manager.pokemons;
 	}
 	void Start(){
 		pokemonsSpawned = new List<GameObject> ();
@@ -28,17 +37,42 @@ public class SpawnerPoke : MonoBehaviour {
 	}
 
 	public void spawnPokemon(){
+		if (manager.isMiniGame)
+			return;
 		GameObject toInstantiate = pokemons[Random.Range(0,pokemons.Length)];
 		if (pokemonsSpawned.Count < pokemons.Length) {
-			if (canSpawnPokemon (toInstantiate)) {
+			if (!canSpawnPokemon (toInstantiate)) {
 				spawnPokemon ();
 				return;
 			}
 		}
-		Instantiate (toInstantiate, new Vector2 (Random.Range (4f, 16f), Random.Range (6f, 13f)), Quaternion.identity);
-		pokemonsSpawned.Add (toInstantiate);
+		toInstantiate.GetComponent<Pokemon> ().spawner = this;
+		pokemonsSpawned.Add(Instantiate (toInstantiate, new Vector2 (Random.Range (4f, 16f), Random.Range (6f, 13f)), Quaternion.identity)as GameObject);
+	}
+
+	public void spawnSpecificPokemon(GameObject pokemon){
+		pokemon.GetComponent<Pokemon> ().spawner = this;
+
+		pokemonsSpawned.Add(Instantiate (pokemon, new Vector2 (Random.Range (4f, 16f), Random.Range (6f, 13f)), Quaternion.identity)as GameObject);
+	}
+
+	public void initMimikyuGame(){
+		clearPokemons ();
+		manager.isMiniGame = true;
+		manager.isMimikyuGame = true;
+		for (int i = 0; i < 600; i++) {
+			spawnSpecificPokemon (mimiPokemons [0]);
+		}
+		spawnSpecificPokemon (mimiPokemons [1]);
 	}
 
 	public void clearPokemons(){
+		if (manager.isMiniGame) {
+			manager.stopMiniGame ();
+		}
+		foreach (GameObject poke in pokemonsSpawned) {
+			Destroy (poke.gameObject);
+		}
+		pokemonsSpawned.Clear ();
 	}
 }

@@ -17,10 +17,10 @@ public class Pokemon : MonoBehaviour {
 	bool isWanderOn;
 	bool waitForAnim=false;
 
+	[HideInInspector]public SpawnerPoke spawner;
+
 
 	//public AudioClip sonPokemon;
-
-
 
 	public void setName(string n) { name = n; }
 	public void setIsEating(bool i) { isEating = i; }
@@ -38,5 +38,20 @@ public class Pokemon : MonoBehaviour {
 
 	public void toggleAnimationWalkOff() {
 		gameObject.GetComponent<Animator>().SetBool("Walk", false);
+	}
+
+	public void killPokemon(){
+		Destroy (this.gameObject);
+	}
+
+	void OnMouseOver(){
+		if(Input.GetMouseButtonDown(0)){
+			if (spawner.manager.isMimikyuGame) {
+				if (this.name == "Mimikyu") {
+					print ("yeah");
+					spawner.initMimikyuGame ();
+				}
+			}
+		}
 	}
 }
